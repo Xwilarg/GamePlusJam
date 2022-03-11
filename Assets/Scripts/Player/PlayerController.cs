@@ -48,6 +48,7 @@ namespace GamesPlusJam
             if (_controller.isGrounded && _verticalSpeed < 0f) // We are on the ground and not jumping
             {
                 moveDir.y = -.1f; // Stick to the ground
+                _verticalSpeed = -_info.GravityMultiplicator;
             }
             else
             {

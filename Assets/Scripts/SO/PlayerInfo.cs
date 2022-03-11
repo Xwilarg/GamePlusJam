@@ -24,7 +24,7 @@ namespace GamesPlusJam.SO
         [Tooltip("Speed multiplicator when the player is running")]
         public float SpeedRunningMultiplicator;
 
-        [Range(1f, 10f)]
+        [Range(0f, 10f)]
         [Tooltip("Vertical force used to make the player jump")]
         public float JumpForce;
 
