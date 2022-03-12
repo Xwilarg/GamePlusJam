@@ -17,12 +17,15 @@ namespace GamesPlusJam.Player
         private Transform _follow;
 
         private Rigidbody _rb;
-        private Vector3 _originalPos;
+        private Vector3 _originalLocalPos;
+        private float _orDist, _orY;
 
         private void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            _originalPos = transform.localPosition;
+            _originalLocalPos = transform.localPosition;
+            _orDist = Vector3.Distance(transform.position, _target.position);
+            _orY = _target.position.y;
         }
 
         private bool _headToTarget = true;
@@ -31,17 +34,17 @@ namespace GamesPlusJam.Player
         {
             var obj = transform.parent.position +
                 new Vector3(
-                    x: 1f * Mathf.Sin(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI),
-                    y: 1f,
-                    z: 1f * Mathf.Cos(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI)
+                    x: _orDist * Mathf.Sin(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI),
+                    y: _orY,
+                    z: _orDist * Mathf.Cos(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI)
                 );
             Debug.DrawLine(transform.position, obj, Color.blue);
             Debug.DrawLine(transform.parent.position, transform.position, Color.red);
             Debug.DrawLine(transform.parent.position, obj, Color.green);
             if (_headToTarget)
             {
-                var dist = Mathf.Abs((_originalPos - transform.localPosition).magnitude);
-                if (dist > 0.1f)
+                var dist = Mathf.Abs((_originalLocalPos - transform.localPosition).magnitude);
+                if (dist > 0.3f)
                 {
                     _rb.velocity = (obj - transform.position).normalized;
                 }
