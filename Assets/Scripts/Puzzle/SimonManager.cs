@@ -70,7 +70,8 @@ namespace GamesPlusJam.Puzzle
                 else
                 {
                     _currentObjective++;
-                    StartCoroutine(WaitAndHideBips());
+                    _refQueueId++;
+                    StartCoroutine(WaitAndHideBips(_refQueueId));
                 }
             }
             else
@@ -81,6 +82,8 @@ namespace GamesPlusJam.Puzzle
                 StartCoroutine(ResetGame());
             }
         }
+
+        private int _refQueueId;
 
         private IEnumerator DisplayBips()
         {
@@ -101,15 +104,16 @@ namespace GamesPlusJam.Puzzle
             _canPlay = true;
         }
 
-        private IEnumerator WaitAndHideBips()
+        private IEnumerator WaitAndHideBips(int queueId)
         {
-            _canPlay = false;
             yield return new WaitForSeconds(.5f);
-            foreach (var c in _cubes)
+            if (queueId == _refQueueId)
             {
-                c.Toggle(false);
+                foreach (var c in _cubes)
+                {
+                    c.Toggle(false);
+                }
             }
-            _canPlay = true;
         }
 
         private IEnumerator ResetGame()

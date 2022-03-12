@@ -28,13 +28,18 @@ namespace GamesPlusJam.Puzzle
         private List<char> _lettersFound = new();
         private int _diffLetterCount;
 
+        private void FindOneLetter()
+        {
+            var randIndex = Random.Range(0, _lettersUsed.Count);
+            _lettersFound.Add(_lettersUsed[randIndex]);
+            _lettersUsed.RemoveAt(randIndex);
+        }
+
         public void FindLetters()
         {
             for (int i = 0; i < _diffLetterCount / 4; i++)
             {
-                var randIndex = Random.Range(0, _lettersUsed.Count);
-                _lettersFound.Add(_lettersUsed[randIndex]);
-                _lettersUsed.RemoveAt(randIndex);
+                FindOneLetter();
             }
             DisplayText();
         }
@@ -44,6 +49,7 @@ namespace GamesPlusJam.Puzzle
             _text = GetComponent<TMP_Text>();
             _lettersUsed = string.Join("", _baseText).ToLowerInvariant().Where(x => char.IsLetter(x)).Distinct().ToList();
             _diffLetterCount = _lettersUsed.Count;
+            FindOneLetter();
             DisplayText();
         }
 
