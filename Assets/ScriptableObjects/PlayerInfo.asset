@@ -20,5 +20,13 @@ MonoBehaviour:
   FootstepDelay: 0.04
   FootstepDelayRunMultiplier: 3
   GravityMultiplicator: 0.003
-  FootstepsWalk: []
-  FootstepsRun: []
+  FootstepsWalk:
+  - {fileID: 8300000, guid: fca99dac32ad69b4c833325a7a0e7562, type: 3}
+  - {fileID: 8300000, guid: 11f3e88508ad2684caa9ea94791dd09a, type: 3}
+  - {fileID: 8300000, guid: 60f6ad6ee1ebe464a9d31ef2582039db, type: 3}
+  - {fileID: 8300000, guid: eb413d098ef52d740925d9a52fcea0fb, type: 3}
+  FootstepsRun:
+  - {fileID: 8300000, guid: fca99dac32ad69b4c833325a7a0e7562, type: 3}
+  - {fileID: 8300000, guid: 11f3e88508ad2684caa9ea94791dd09a, type: 3}
+  - {fileID: 8300000, guid: 60f6ad6ee1ebe464a9d31ef2582039db, type: 3}
+  - {fileID: 8300000, guid: eb413d098ef52d740925d9a52fcea0fb, type: 3}
