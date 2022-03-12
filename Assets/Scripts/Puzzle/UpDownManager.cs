@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace GamesPlusJam.Puzzle
 {
@@ -13,6 +15,25 @@ namespace GamesPlusJam.Puzzle
             {
                 _upDowns[i].Index = i;
                 _upDowns[i].Manager = this;
+            }
+
+            List<int> indexes = Enumerable.Range(0, _upDowns.Length).ToList();
+            for (int i = 0; i < 3; i++)
+            {
+                var randIndex = Random.Range(0, indexes.Count);
+                var value = indexes[randIndex];
+                _upDowns[value].Activate();
+                indexes.RemoveAt(randIndex);
+                var before = indexes.IndexOf(value - 1);
+                if (before != -1)
+                {
+                    indexes.RemoveAt(before);
+                }
+                var after = indexes.IndexOf(value + 1);
+                if (after != -1)
+                {
+                    indexes.RemoveAt(after);
+                }
             }
         }
 
