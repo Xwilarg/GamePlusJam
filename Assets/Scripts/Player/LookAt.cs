@@ -35,7 +35,7 @@ namespace GamesPlusJam.Player
             Debug.DrawLine(transform.parent.position, transform.position, Color.red);
             Debug.DrawLine(transform.parent.position, obj, Color.green);
             var dist = Mathf.Abs((_originalLocalPos - transform.localPosition).magnitude);
-            if (dist > 0.3f) // If camera is too far from where it's supposed to be, we move it
+            if (dist > 0.5f) // If camera is too far from where it's supposed to be, we move it
             {
                 _rb.velocity = (obj - transform.position).normalized;
             }

@@ -6586,6 +6586,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2298350379413200557, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2298350379413200559, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
       propertyPath: m_Layer
       value: 6
