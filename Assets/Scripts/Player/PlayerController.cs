@@ -81,20 +81,20 @@ namespace GamesPlusJam
             _controller.Move(moveDir);
 
             // Footsteps
-            _footstepDelay -= Vector3.SqrMagnitude(p - transform.position);
-            if (_footstepDelay < 0f)
+            if (_controller.isGrounded)
             {
-                // TODO: Need audio
-                /*
-                var target = _isSprinting ? _footstepsRun : _footstepsWalk;
-                var clipIndex = Random.Range(1, target.Count);
-                var clip = target[clipIndex];
-                target.RemoveAt(clipIndex);
-                target.Insert(0, clip);
+                _footstepDelay -= Vector3.SqrMagnitude(p - transform.position);
+                if (_footstepDelay < 0f)
+                {
+                    var target = _isSprinting ? _footstepsRun : _footstepsWalk;
+                    var clipIndex = Random.Range(1, target.Count);
+                    var clip = target[clipIndex];
+                    target.RemoveAt(clipIndex);
+                    target.Insert(0, clip);
 
-                _audioSource.PlayOneShot(clip);
-                _footstepDelay += _info.FootstepDelay * (_isSprinting ? _info.FootstepDelayRunMultiplier : 1f);
-                */
+                    _audioSource.PlayOneShot(clip);
+                    _footstepDelay += _info.FootstepDelay * (_isSprinting ? _info.FootstepDelayRunMultiplier : 1f);
+                }
             }
 
             // Detect if can interract with smth in front of us
