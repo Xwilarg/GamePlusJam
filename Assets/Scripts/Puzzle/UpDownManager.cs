@@ -10,7 +10,7 @@ namespace GamesPlusJam.Puzzle
         private UpDown[] _upDowns;
 
         [SerializeField]
-        private UpDownPipe _endPipe;
+        private Toggeable _endPipe;
 
         private void Start()
         {

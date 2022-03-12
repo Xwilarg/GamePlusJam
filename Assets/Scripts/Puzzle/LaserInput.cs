@@ -9,6 +9,9 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private LineRenderer[] _renderers;
 
+        [SerializeField]
+        private Toggeable _output;
+
         private LineRenderer _renderer;
 
         [SerializeField]
@@ -29,6 +32,7 @@ namespace GamesPlusJam.Puzzle
                 renderer.enabled = false;
             }
             _mirrors.Clear();
+            _output.Toggle(false);
             DrawLaser(_renderer, _laserStart.position, () =>
             {
                 return transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
@@ -63,6 +67,10 @@ namespace GamesPlusJam.Puzzle
                 {
                     return hitInfo.collider.transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
                 });
+            }
+            else if (hitInfo.collider.CompareTag("MirrorOutput"))
+            {
+                _output.Toggle(true);
             }
         }
     }

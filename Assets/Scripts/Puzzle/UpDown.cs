@@ -20,7 +20,7 @@ namespace GamesPlusJam.Puzzle
         private float _speed;
 
         [SerializeField]
-        private UpDownPipe _previousPipe;
+        private Toggeable _previousPipe;
 
         public void TogglePipeStatus(bool value)
         {

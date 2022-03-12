@@ -2,7 +2,7 @@
 
 namespace GamesPlusJam.Puzzle
 {
-    public class UpDownPipe : MonoBehaviour
+    public class Toggeable : MonoBehaviour
     {
         [SerializeField]
         private Material _active, _notActive;
