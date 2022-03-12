@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GamesPlusJam.Puzzle
@@ -13,6 +14,8 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private Transform _laserStart;
 
+        private List<GameObject> _mirrors = new();
+
         private void Start()
         {
             _renderer = GetComponent<LineRenderer>();
@@ -25,6 +28,7 @@ namespace GamesPlusJam.Puzzle
             {
                 renderer.enabled = false;
             }
+            _mirrors.Clear();
             DrawLaser(_renderer, _laserStart.position, () =>
             {
                 return transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
@@ -33,14 +37,24 @@ namespace GamesPlusJam.Puzzle
 
         public void DrawLaser(LineRenderer renderer, Vector3 startPos, Func<float> angle)
         {
-            renderer.enabled = true;
-            renderer.SetPosition(0, startPos);
             Physics.Raycast(new Ray(startPos,
                 new Vector3(
                     x: Mathf.Sin(angle()),
                     y: 0f,
                     z: Mathf.Cos(angle())
                 )), out RaycastHit hitInfo);
+
+            if (_mirrors.Contains(hitInfo.collider.gameObject))
+            {
+                return; // Prevent stack overflows
+            }
+            else
+            {
+                _mirrors.Add(hitInfo.collider.gameObject);
+            }
+
+            renderer.enabled = true;
+            renderer.SetPosition(0, startPos);
             renderer.SetPosition(1, hitInfo.point);
 
             if (hitInfo.collider.CompareTag("Mirror"))
