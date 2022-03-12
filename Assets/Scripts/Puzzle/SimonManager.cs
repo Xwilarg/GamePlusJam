@@ -150,7 +150,7 @@ namespace GamesPlusJam.Puzzle
                 {
                     break;
                 }
-                _cubes[_bips[0]].Toggle(true);
+                _cubes[_bips[0]].Toggle(true, true);
                 yield return new WaitForSeconds(1);
                 if (_startPlaying)
                 {

@@ -25,7 +25,7 @@ namespace GamesPlusJam.Puzzle
             {
                 var randIndex = Random.Range(0, indexes.Count);
                 var value = indexes[randIndex];
-                _upDowns[value].Activate();
+                _upDowns[value].Activate(true);
                 indexes.RemoveAt(randIndex);
                 var before = indexes.IndexOf(value - 1);
                 if (before != -1)

@@ -22,6 +22,8 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private Toggeable _previousPipe;
 
+        private AudioSource _source;
+
         public void TogglePipeStatus(bool value)
         {
             _previousPipe.Toggle(value);
@@ -44,11 +46,17 @@ namespace GamesPlusJam.Puzzle
         private void Start()
         {
             _orPos = transform.position;
+            _source = GetComponent<AudioSource>();
         }
 
-        public void Activate()
+        public void Activate(bool bypassAudio = false)
         {
             GoUp = !GoUp;
+            if (!bypassAudio)
+            {
+                _source.pitch = Random.Range(0f, 1f);
+                _source.Play();
+            }
         }
     }
 }
