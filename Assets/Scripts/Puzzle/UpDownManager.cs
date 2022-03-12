@@ -7,7 +7,10 @@ namespace GamesPlusJam.Puzzle
     public class UpDownManager : MonoBehaviour
     {
         [SerializeField]
-        public UpDown[] _upDowns;
+        private UpDown[] _upDowns;
+
+        [SerializeField]
+        private UpDownPipe _endPipe;
 
         private void Start()
         {
@@ -35,6 +38,7 @@ namespace GamesPlusJam.Puzzle
                     indexes.RemoveAt(after);
                 }
             }
+            UpdateDisplay();
         }
 
         public void Activate(int index)
@@ -47,6 +51,21 @@ namespace GamesPlusJam.Puzzle
             if (index < _upDowns.Length - 1)
             {
                 _upDowns[index + 1].Activate();
+            }
+            UpdateDisplay();
+        }
+
+        public void UpdateDisplay()
+        {
+            bool active = true;
+            foreach (var ud in _upDowns)
+            {
+                ud.TogglePipeStatus(active);
+                if (ud.GoUp)
+                {
+                    active = false;
+                }
+                _endPipe.Toggle(active);
             }
         }
     }

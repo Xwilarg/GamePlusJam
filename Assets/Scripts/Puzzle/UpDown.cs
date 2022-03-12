@@ -18,8 +18,16 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private float _speed;
 
+        [SerializeField]
+        private UpDownPipe _previousPipe;
+
+        public void TogglePipeStatus(bool value)
+        {
+            _previousPipe.Toggle(value);
+        }
+
         private float _prog = 0f;
-        private bool _goUp = false;
+        public bool GoUp { private set; get; } =false;
         private Vector3 _orPos;
 
         public int Index { set; private get; }
@@ -27,7 +35,7 @@ namespace GamesPlusJam.Puzzle
 
         private void Update()
         {
-            _prog = Mathf.Clamp01(_prog + Time.deltaTime * _speed * (_goUp ? 1f : -1f));
+            _prog = Mathf.Clamp01(_prog + Time.deltaTime * _speed * (GoUp ? 1f : -1f));
             transform.position = Vector3.Lerp(_orPos, _orPos + Vector3.down, _prog);
         }
 
@@ -38,7 +46,7 @@ namespace GamesPlusJam.Puzzle
 
         public void Activate()
         {
-            _goUp = !_goUp;
+            GoUp = !GoUp;
         }
     }
 }
