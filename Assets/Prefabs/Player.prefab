@@ -263,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _info: {fileID: 11400000, guid: d0a62ae6b8bb54c41a1bd74d0e574500, type: 2}
   _actionIndicator: {fileID: 0}
-  _actionRaycastFrom: {fileID: 1543422984}
+  _head: {fileID: 0}
 --- !u!114 &2298350378782128936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,22 +321,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b40ec4f6-49f9-4714-8001-a6c148fd6395
     m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2298350378782128937}
-        m_TargetAssemblyTypeName: GamesPlusJam.PlayerController, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 9b22ec00-2694-405d-b4ae-40e48e7e85ac
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e5347eb0-f2a2-4f9e-a9ae-779a5fa58093
@@ -409,6 +393,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: feec3631-e55a-472b-946a-2c2d8278af54
     m_ActionName: Player/Action[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2298350378782128937}
+        m_TargetAssemblyTypeName: GamesPlusJam.PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a67e712c-f641-4f1d-9673-ca06f1187804
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

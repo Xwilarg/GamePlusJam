@@ -73,7 +73,7 @@ namespace GamesPlusJam
             else
             {
                 // We are currently jumping, reduce our jump velocity by gravity and apply it
-                _verticalSpeed += Physics.gravity.y * _info.GravityMultiplicator;
+                _verticalSpeed += Physics.gravity.y * (_info.GravityMultiplicator * getFractionOfTimePressed());
                 moveDir.y += _verticalSpeed;
             }
 
@@ -131,12 +131,34 @@ namespace GamesPlusJam
             _head.transform.localRotation = Quaternion.AngleAxis(_headRotation, Vector3.right);
         }
 
+        bool jumpIsPressed = false;
+        float timePressed = 0;
+        float maxTimeJump = 0.35f;
         public void OnJump(InputAction.CallbackContext value)
         {
-            if (_controller.isGrounded && _canMove)
+
+            if (value.started)
             {
-                _verticalSpeed = _info.JumpForce;
+                jumpIsPressed = true;
+                timePressed = Time.time;
+                if (_controller.isGrounded && _canMove)
+                {
+                    _verticalSpeed = _info.JumpForce;
+                }
             }
+            else if (value.canceled)
+            {
+                jumpIsPressed = false;
+            }
+        }
+
+        float getFractionOfTimePressed()
+        {
+            if (jumpIsPressed)
+            {
+                return Mathf.Clamp01((Time.time - timePressed) / maxTimeJump);
+            }
+            return 1;
         }
 
         public void OnSprint(InputAction.CallbackContext value)
