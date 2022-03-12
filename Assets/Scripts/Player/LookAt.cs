@@ -10,12 +10,6 @@ namespace GamesPlusJam.Player
         [SerializeField]
         private Transform _target;
 
-        /// <summary>
-        /// Camera will attempt to stay at the same distance of the target
-        /// </summary>
-        [SerializeField]
-        private Transform _follow;
-
         private Rigidbody _rb;
         private Vector3 _originalLocalPos;
         private float _orDist, _orY;
@@ -28,10 +22,9 @@ namespace GamesPlusJam.Player
             _orY = _target.position.y;
         }
 
-        private bool _headToTarget = true;
-
         private void FixedUpdate()
         {
+            // Where camera should be
             var obj = transform.parent.position +
                 new Vector3(
                     x: _orDist * Mathf.Sin(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI),
@@ -41,17 +34,14 @@ namespace GamesPlusJam.Player
             Debug.DrawLine(transform.position, obj, Color.blue);
             Debug.DrawLine(transform.parent.position, transform.position, Color.red);
             Debug.DrawLine(transform.parent.position, obj, Color.green);
-            if (_headToTarget)
+            var dist = Mathf.Abs((_originalLocalPos - transform.localPosition).magnitude);
+            if (dist > 0.3f) // If camera is too far from where it's supposed to be, we move it
             {
-                var dist = Mathf.Abs((_originalLocalPos - transform.localPosition).magnitude);
-                if (dist > 0.3f)
-                {
-                    _rb.velocity = (obj - transform.position).normalized;
-                }
-                else
-                {
-                    _rb.velocity = Vector3.zero;
-                }
+                _rb.velocity = (obj - transform.position).normalized;
+            }
+            else
+            {
+                _rb.velocity = Vector3.zero;
             }
 
             // Keep looking at the player
