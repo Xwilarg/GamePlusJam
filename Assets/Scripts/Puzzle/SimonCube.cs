@@ -9,6 +9,7 @@ namespace GamesPlusJam.Puzzle
         private Material _normal, _enabled;
 
         public SimonManager Manager { private get; set; }
+        public int Index { private get; set; }
 
         public override bool IsOneWay => true;
 
@@ -28,12 +29,10 @@ namespace GamesPlusJam.Puzzle
 
         public override void InteractOn(PlayerController pc)
         {
-            throw new System.NotImplementedException();
+            Manager.AddAnswer(Index);
         }
 
         public override void InteractOff(PlayerController pc)
-        {
-            throw new System.NotImplementedException();
-        }
+        { }
     }
 }
