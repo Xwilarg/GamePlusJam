@@ -16,10 +16,10 @@ MonoBehaviour:
   VerticalLookMultiplier: 0.1
   ForceMultiplier: 0.05
   SpeedRunningMultiplicator: 2
-  JumpForce: 0.3
-  FootstepDelay: 0.04
+  JumpForce: 0.15
+  FootstepDelay: 0.06
   FootstepDelayRunMultiplier: 3
-  GravityMultiplicator: 0.003
+  GravityMultiplicator: 0.001
   FootstepsWalk:
   - {fileID: 8300000, guid: fca99dac32ad69b4c833325a7a0e7562, type: 3}
   - {fileID: 8300000, guid: 11f3e88508ad2684caa9ea94791dd09a, type: 3}
