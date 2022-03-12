@@ -1,3 +1,5 @@
+using GamesPlusJam.Action;
+using GamesPlusJam.Player;
 using GamesPlusJam.SO;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,14 @@ namespace GamesPlusJam
         [SerializeField]
         private PlayerInfo _info;
 
+        [SerializeField]
+        private GameObject _actionIndicator;
+
+        [SerializeField]
+        private GameObject _actionRaycastFrom;
+
+        private LookAt _lookAt;
+
         private List<AudioClip> _footstepsWalk, _footstepsRun;
 
         private AudioSource _audioSource;
@@ -20,19 +30,32 @@ namespace GamesPlusJam
         private float _footstepDelay;
 
         private Vector2 _mov;
+        private int _ignorePlayerLayer;
+
+        private Interactible _interactible;
+
+        private bool _canMove = true;
 
         private void Start()
         {
+            _lookAt = GetComponentInChildren<LookAt>();
             _audioSource = GetComponent<AudioSource>();
             _controller = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
 
             _footstepsWalk = _info.FootstepsWalk.ToList();
             _footstepsRun = _info.FootstepsRun.ToList();
+
+            _ignorePlayerLayer = ~(1 << LayerMask.NameToLayer("Player"));
         }
 
         private void FixedUpdate()
         {
+            if (!_canMove)
+            {
+                return;
+            }
+
             var pos = _mov;
             Vector3 desiredMove = transform.forward * pos.y + transform.right * pos.x;
 
@@ -76,6 +99,18 @@ namespace GamesPlusJam
                 _footstepDelay += _info.FootstepDelay * (_isSprinting ? _info.FootstepDelayRunMultiplier : 1f);
                 */
             }
+
+            // Detect if can interract with smth in front of us
+            if (Physics.Raycast(new Ray(_actionRaycastFrom.transform.position, transform.forward), out RaycastHit interInfo, 1.5f, _ignorePlayerLayer))
+            {
+                _interactible = interInfo.collider.GetComponent<Interactible>();
+                _actionIndicator.SetActive(_interactible != null);
+            }
+            else
+            {
+                _actionIndicator.SetActive(false);
+                _interactible = null;
+            }
         }
 
         public void OnMovement(InputAction.CallbackContext value)
@@ -85,6 +120,10 @@ namespace GamesPlusJam
 
         public void OnLook(InputAction.CallbackContext value)
         {
+            if (!_canMove)
+            {
+                return;
+            }
             var rot = value.ReadValue<Vector2>();
 
             transform.rotation *= Quaternion.AngleAxis(rot.x * _info.HorizontalLookMultiplier, Vector3.up);
@@ -100,7 +139,7 @@ namespace GamesPlusJam
 
         public void OnJump(InputAction.CallbackContext value)
         {
-            if (_controller.isGrounded)
+            if (_controller.isGrounded && _canMove)
             {
                 _verticalSpeed = _info.JumpForce;
             }
@@ -109,6 +148,32 @@ namespace GamesPlusJam
         public void OnSprint(InputAction.CallbackContext value)
         {
             _isSprinting = value.ReadValueAsButton();
+        }
+
+        public void OnAction(InputAction.CallbackContext value)
+        {
+            if (value.performed && _interactible != null)
+            {
+                if (_interactible.IsOneWay)
+                {
+                    _interactible.InteractOn(this);
+                }
+                else
+                {
+                    if (_canMove)
+                    {
+                        _canMove = false;
+                        _actionIndicator.SetActive(false);
+                        _interactible.InteractOn(this);
+                    }
+                    else
+                    {
+                        _canMove = true;
+                        _actionIndicator.SetActive(true);
+                        _interactible.InteractOff(this);
+                    }
+                }
+            }
         }
     }
 }
