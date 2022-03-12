@@ -12,6 +12,10 @@ namespace GamesPlusJam.Puzzle
         private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
+            if (_notActive == null)
+            {
+                _notActive = _renderer.material;
+            }
         }
 
         public void Toggle(bool status)

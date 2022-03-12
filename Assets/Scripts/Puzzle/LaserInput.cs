@@ -40,7 +40,7 @@ namespace GamesPlusJam.Puzzle
             }
             DrawLaser(_renderer, _laserStart.position, () =>
             {
-                return transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
+                return transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
             });
         }
 

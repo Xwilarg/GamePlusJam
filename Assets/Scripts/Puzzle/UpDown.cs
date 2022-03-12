@@ -54,7 +54,7 @@ namespace GamesPlusJam.Puzzle
             GoUp = !GoUp;
             if (!bypassAudio)
             {
-                _source.pitch = Random.Range(0f, 1f);
+                _source.pitch = Random.Range(.75f, 1.25f);
                 _source.Play();
             }
         }
