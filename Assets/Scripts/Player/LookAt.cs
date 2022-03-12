@@ -29,7 +29,12 @@ namespace GamesPlusJam.Player
 
         private void FixedUpdate()
         {
-            var obj = transform.parent.position + _originalPos;
+            var obj = transform.parent.position +
+                new Vector3(
+                    x: 1f * Mathf.Sin(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI),
+                    y: 1f,
+                    z: 1f * Mathf.Cos(transform.parent.rotation.eulerAngles.y * Mathf.Deg2Rad + Mathf.PI)
+                );
             Debug.DrawLine(transform.position, obj, Color.blue);
             Debug.DrawLine(transform.parent.position, transform.position, Color.red);
             Debug.DrawLine(transform.parent.position, obj, Color.green);
@@ -38,7 +43,7 @@ namespace GamesPlusJam.Player
                 var dist = Mathf.Abs((_originalPos - transform.localPosition).magnitude);
                 if (dist > 0.1f)
                 {
-                    _rb.velocity = (transform.localPosition - obj).normalized;
+                    _rb.velocity = (obj - transform.position).normalized;
                 }
                 else
                 {
