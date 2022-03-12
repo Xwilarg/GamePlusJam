@@ -6,6 +6,7 @@ namespace GamesPlusJam.Puzzle
     public class UpDown : AInteraction
     {
         public override bool IsOneWay => true;
+        public override bool IsAvailable => Available;
 
         public override void InteractOff(PlayerController pc)
         { }
@@ -31,6 +32,7 @@ namespace GamesPlusJam.Puzzle
         private Vector3 _orPos;
 
         public int Index { set; private get; }
+        public bool Available { set; private get; } = true;
         public UpDownManager Manager { set; private get; }
 
         private void Update()

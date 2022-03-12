@@ -152,7 +152,7 @@ namespace GamesPlusJam
 
         public void OnAction(InputAction.CallbackContext value)
         {
-            if (value.performed && _interactible != null)
+            if (value.performed && _interactible != null && _interactible.IsAvailable)
             {
                 if (_interactible.IsOneWay)
                 {

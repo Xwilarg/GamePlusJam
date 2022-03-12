@@ -17,6 +17,8 @@ namespace GamesPlusJam.Puzzle
 
         public override bool IsOneWay => true;
 
+        public override bool IsAvailable => true;
+
         public override void InteractOff(PlayerController pc)
         { }
 

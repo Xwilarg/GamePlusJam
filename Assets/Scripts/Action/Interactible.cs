@@ -10,12 +10,16 @@ namespace GamesPlusJam.Action
         private AInteraction[] _interactions;
 
         public bool IsOneWay => _interactions.All(x => x.IsOneWay);
+        public bool IsAvailable => _interactions.Any(x => x.IsAvailable);
 
         public void InteractOn(PlayerController pc)
         {
             foreach (var interaction in _interactions)
             {
-                interaction.InteractOn(pc);
+                if (interaction.IsAvailable)
+                {
+                    interaction.InteractOn(pc);
+                }
             }
         }
 
@@ -23,7 +27,10 @@ namespace GamesPlusJam.Action
         {
             foreach (var interaction in _interactions)
             {
-                interaction.InteractOff(pc);
+                if (interaction.IsAvailable)
+                {
+                    interaction.InteractOff(pc);
+                }
             }
         }
     }

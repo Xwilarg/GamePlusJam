@@ -9,6 +9,8 @@ namespace GamesPlusJam.Action.Interaction
 
         public override bool IsOneWay => false;
 
+        public override bool IsAvailable => true;
+
         public override void InteractOn(PlayerController pc)
         {
             _image.SetActive(true);

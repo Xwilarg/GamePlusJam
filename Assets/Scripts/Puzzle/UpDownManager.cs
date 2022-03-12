@@ -65,7 +65,14 @@ namespace GamesPlusJam.Puzzle
                 {
                     active = false;
                 }
-                _endPipe.Toggle(active);
+            }
+            _endPipe.Toggle(active);
+            if (active)
+            {
+                foreach (var ud in _upDowns)
+                {
+                    ud.Available = false;
+                }
             }
         }
     }
