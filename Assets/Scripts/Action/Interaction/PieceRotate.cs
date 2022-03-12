@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GamesPlusJam.Puzzle
 {
-    public class PuzzleInput : AInteraction
+    public class PieceRotate : AInteraction
     {
         [SerializeField]
         private int _nbTurns;

@@ -1,5 +1,4 @@
 using GamesPlusJam.Action;
-using GamesPlusJam.Player;
 using GamesPlusJam.SO;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +15,6 @@ namespace GamesPlusJam
         [SerializeField]
         private GameObject _actionIndicator;
 
-        [SerializeField]
-        private GameObject _actionRaycastFrom;
         [SerializeField]
         private Transform _head;
         private float _headRotation;
@@ -101,7 +98,7 @@ namespace GamesPlusJam
             }
 
             // Detect if can interract with smth in front of us
-            if (Physics.Raycast(new Ray(_actionRaycastFrom.transform.position, transform.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
+            if (Physics.Raycast(new Ray(_head.position, _head.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
                 _actionIndicator.SetActive(_interactible != null);
