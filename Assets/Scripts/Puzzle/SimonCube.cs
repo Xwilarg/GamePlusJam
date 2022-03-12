@@ -13,7 +13,7 @@ namespace GamesPlusJam.Puzzle
 
         public override bool IsOneWay => true;
 
-        public override bool IsAvailable => true;
+        public override bool IsAvailable => !Manager.IsDone;
 
         private MeshRenderer _renderer;
 

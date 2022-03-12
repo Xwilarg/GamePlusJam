@@ -8,10 +8,11 @@ namespace GamesPlusJam.Puzzle
     {
         private List<SimonCube> _cubes = new();
         private List<int> _bips = new();
-        private List<int> _currentSerie = new();
 
         private bool _startPlaying;
         private bool _canPlay = true;
+
+        public bool IsDone { private set; get; }
 
         private int _maxIndex = 5;
 
@@ -38,6 +39,10 @@ namespace GamesPlusJam.Puzzle
 
         public void AddAnswer(int index)
         {
+            if (!_canPlay)
+            {
+                return;
+            }
             foreach (var c in _cubes)
             {
                 c.Toggle(false);
@@ -49,14 +54,18 @@ namespace GamesPlusJam.Puzzle
                 if (_currentObjective == _maxIndex)
                 {
                     _canPlay = false;
+                    IsDone = true;
                     foreach (var c in _cubes)
                     {
                         c.Toggle(true);
                     }
+                    AnswerText.Instance.FindLetters();
                 }
                 else if (_currentObjective == _bips.Count - 1)
                 {
                     AddBip();
+                    _currentObjective = 0;
+                    StartCoroutine(DisplayBips());
                 }
                 else
                 {
@@ -84,9 +93,9 @@ namespace GamesPlusJam.Puzzle
             yield return new WaitForSeconds(1f);
             foreach (var b in _bips)
             {
-                _cubes[b].Toggle(false);
-                yield return new WaitForSeconds(.5f);
                 _cubes[b].Toggle(true);
+                yield return new WaitForSeconds(.5f);
+                _cubes[b].Toggle(false);
                 yield return new WaitForSeconds(.5f);
             }
             _canPlay = true;
