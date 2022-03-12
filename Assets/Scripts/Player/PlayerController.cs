@@ -18,8 +18,9 @@ namespace GamesPlusJam
 
         [SerializeField]
         private GameObject _actionRaycastFrom;
-
-        private LookAt _lookAt;
+        [SerializeField]
+        private Transform _head;
+        private float _headRotation;
 
         private List<AudioClip> _footstepsWalk, _footstepsRun;
 
@@ -38,7 +39,6 @@ namespace GamesPlusJam
 
         private void Start()
         {
-            _lookAt = GetComponentInChildren<LookAt>();
             _audioSource = GetComponent<AudioSource>();
             _controller = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
@@ -101,7 +101,7 @@ namespace GamesPlusJam
             }
 
             // Detect if can interract with smth in front of us
-            if (Physics.Raycast(new Ray(_actionRaycastFrom.transform.position, transform.forward), out RaycastHit interInfo, 1.5f, _ignorePlayerLayer))
+            if (Physics.Raycast(new Ray(_actionRaycastFrom.transform.position, transform.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
                 _actionIndicator.SetActive(_interactible != null);
@@ -128,13 +128,10 @@ namespace GamesPlusJam
 
             transform.rotation *= Quaternion.AngleAxis(rot.x * _info.HorizontalLookMultiplier, Vector3.up);
 
-            // TODO: Vertical rotation
-            /*
-            _headRotation -= mousePos.y * _info.VerticalLookMultiplier; // Vertical look is inverted by default, hence the -=
+            _headRotation -= rot.y * _info.VerticalLookMultiplier; // Vertical look is inverted by default, hence the -=
 
             _headRotation = Mathf.Clamp(_headRotation, -89, 89);
             _head.transform.localRotation = Quaternion.AngleAxis(_headRotation, Vector3.right);
-            */
         }
 
         public void OnJump(InputAction.CallbackContext value)
