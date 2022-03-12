@@ -73,6 +73,7 @@ namespace GamesPlusJam.Puzzle
                 {
                     ud.Available = false;
                 }
+                AnswerText.Instance.FindLetters();
             }
         }
     }
