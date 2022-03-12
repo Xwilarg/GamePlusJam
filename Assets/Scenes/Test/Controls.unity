@@ -2736,7 +2736,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh125512
+  m_Name: pb_Mesh131688
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6641,6 +6641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5087146466187192751, guid: 36b054c23b065c24dabb3e8c7fd245d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 72a1e2d7c4f85ef4a9d9523558de08c9, type: 2}
     - target: {fileID: 5087146466187192785, guid: 36b054c23b065c24dabb3e8c7fd245d8, type: 3}
       propertyPath: _speed
       value: 5
@@ -6654,6 +6658,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25726323654102024, guid: a2d3cae7a05bc944e961e187fb5f6278, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 72a1e2d7c4f85ef4a9d9523558de08c9, type: 2}
     - target: {fileID: 5469876584320679044, guid: a2d3cae7a05bc944e961e187fb5f6278, type: 3}
       propertyPath: m_Name
       value: Pivot (1)
@@ -11548,6 +11556,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25726323654102024, guid: a2d3cae7a05bc944e961e187fb5f6278, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 72a1e2d7c4f85ef4a9d9523558de08c9, type: 2}
     - target: {fileID: 5469876584320679044, guid: a2d3cae7a05bc944e961e187fb5f6278, type: 3}
       propertyPath: m_Name
       value: Pivot

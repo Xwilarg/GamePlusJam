@@ -101,7 +101,7 @@ namespace GamesPlusJam
             if (Physics.Raycast(new Ray(_head.position, _head.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
-                _actionIndicator.SetActive(_interactible != null);
+                _actionIndicator.SetActive(_interactible != null && _interactible.IsAvailable);
             }
             else
             {

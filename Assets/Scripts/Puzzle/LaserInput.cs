@@ -19,6 +19,8 @@ namespace GamesPlusJam.Puzzle
 
         private List<GameObject> _mirrors = new();
 
+        private bool _isAlreadyWon;
+
         private void Start()
         {
             _renderer = GetComponent<LineRenderer>();
@@ -32,7 +34,10 @@ namespace GamesPlusJam.Puzzle
                 renderer.enabled = false;
             }
             _mirrors.Clear();
-            _output.Toggle(false);
+            if (!_isAlreadyWon)
+            {
+                _output.Toggle(false);
+            }
             DrawLaser(_renderer, _laserStart.position, () =>
             {
                 return transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
@@ -68,9 +73,11 @@ namespace GamesPlusJam.Puzzle
                     return hitInfo.collider.transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
                 });
             }
-            else if (hitInfo.collider.CompareTag("MirrorOutput"))
+            else if (hitInfo.collider.CompareTag("MirrorOutput") && !_isAlreadyWon)
             {
                 _output.Toggle(true);
+                _isAlreadyWon = true;
+                AnswerText.Instance.FindLetters();
             }
         }
     }
