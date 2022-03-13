@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace GamesPlusJam
 {
@@ -18,6 +19,9 @@ namespace GamesPlusJam
         [SerializeField]
         private Transform _head;
         private float _headRotation;
+
+        [SerializeField]
+        private Image _crosshair;
 
         private List<AudioClip> _footstepsWalk, _footstepsRun;
 
@@ -98,10 +102,16 @@ namespace GamesPlusJam
             }
 
             // Detect if can interract with smth in front of us
+            _crosshair.color = Color.white;
             if (Physics.Raycast(new Ray(_head.position, _head.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
-                _actionIndicator.SetActive(_interactible != null && _interactible.IsAvailable);
+                bool canInteract = _interactible != null && _interactible.IsAvailable;
+                _actionIndicator.SetActive(canInteract);
+                if (canInteract)
+                {
+                    _crosshair.color = Color.green;
+                }
             }
             else
             {
