@@ -12,6 +12,8 @@ namespace GamesPlusJam.Puzzle
 
         public static MineManager Instance { get; private set; }
 
+        public bool Lost { set; private get; }
+
         private void Awake()
         {
             Instance = this;
@@ -37,6 +39,14 @@ namespace GamesPlusJam.Puzzle
                 mine.Toggle(value);
             }
             _output.CanInteract = !value;
+            if (!value && Lost)
+            {
+                Lost = false;
+                foreach (var mine in _mines)
+                {
+                    mine.Randomize();
+                }
+            }
         }
     }
 }

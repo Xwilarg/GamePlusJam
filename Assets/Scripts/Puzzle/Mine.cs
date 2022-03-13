@@ -14,6 +14,11 @@ namespace GamesPlusJam.Puzzle
         private void Start()
         {
             _light = GetComponent<Light>();
+            Randomize();
+        }
+
+        public void Randomize()
+        {
             transform.localPosition = new Vector3(
                 x: Random.Range(_min, _max),
                 y: transform.localPosition.y,
@@ -41,6 +46,7 @@ namespace GamesPlusJam.Puzzle
         {
             if (other.CompareTag("Player"))
             {
+                MineManager.Instance.Lost = true;
                 MineManager.Instance.ToggleAll(true);
             }
         }
