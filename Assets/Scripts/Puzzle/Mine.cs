@@ -6,9 +6,17 @@ namespace GamesPlusJam.Puzzle
     {
         private Light _light;
 
+        [SerializeField]
+        private float _min, _max;
+
         private void Start()
         {
             _light = GetComponent<Light>();
+            transform.localPosition = new Vector3(
+                x: Random.Range(_min, _max),
+                y: transform.localPosition.y,
+                z: transform.localPosition.z
+            );
         }
 
         public void Toggle(bool value)
