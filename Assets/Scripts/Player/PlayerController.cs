@@ -14,9 +14,6 @@ namespace GamesPlusJam
         private PlayerInfo _info;
 
         [SerializeField]
-        private GameObject _actionIndicator;
-
-        [SerializeField]
         private Transform _head;
         private float _headRotation;
 
@@ -112,7 +109,6 @@ namespace GamesPlusJam
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
                 bool canInteract = _interactible != null && _interactible.IsAvailable;
-                _actionIndicator.SetActive(canInteract);
                 if (canInteract)
                 {
                     _crosshair.color = Color.green;
@@ -120,7 +116,6 @@ namespace GamesPlusJam
             }
             else
             {
-                _actionIndicator.SetActive(false);
                 _interactible = null;
             }
         }
@@ -172,13 +167,11 @@ namespace GamesPlusJam
                     if (_canMove)
                     {
                         _canMove = false;
-                        _actionIndicator.SetActive(false);
                         _interactible.InteractOn(this);
                     }
                     else
                     {
                         _canMove = true;
-                        _actionIndicator.SetActive(true);
                         _interactible.InteractOff(this);
                     }
                 }
