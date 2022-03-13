@@ -12,6 +12,9 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private Toggeable _endPipe;
 
+        [SerializeField]
+        private AudioSource _source;
+
         private void Start()
         {
             for (int i = 0; i < _upDowns.Length; i++)
@@ -74,7 +77,7 @@ namespace GamesPlusJam.Puzzle
                     ud.Available = false;
                 }
                 AnswerText.Instance.FindLetters();
-                GetComponent<AudioSource>().Play();
+                _source.Play();
             }
         }
     }
