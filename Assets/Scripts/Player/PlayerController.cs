@@ -11,6 +11,9 @@ namespace GamesPlusJam
     public class PlayerController : MonoBehaviour
     {
         [SerializeField]
+        private Sprite _crossOn, _crossOff;
+
+        [SerializeField]
         private PlayerInfo _info;
 
         [SerializeField]
@@ -104,14 +107,14 @@ namespace GamesPlusJam
             }
 
             // Detect if can interract with smth in front of us
-            _crosshair.color = Color.white;
+            _crosshair.sprite = _crossOff;
             if (Physics.Raycast(new Ray(_head.position, _head.forward), out RaycastHit interInfo, 2f, _ignorePlayerLayer))
             {
                 _interactible = interInfo.collider.GetComponent<Interactible>();
                 bool canInteract = _interactible != null && _interactible.IsAvailable;
                 if (canInteract)
                 {
-                    _crosshair.color = Color.green;
+                    _crosshair.sprite = _crossOn;
                 }
             }
             else

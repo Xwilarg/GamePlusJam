@@ -9287,6 +9287,14 @@ PrefabInstance:
       value: 1.556
       objectReference: {fileID: 0}
     - target: {fileID: 2298350378782128937, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
+      propertyPath: _crossOn
+      value: 
+      objectReference: {fileID: -1415894428, guid: d79e9cb5b00742d40999e9c8af88be7b, type: 3}
+    - target: {fileID: 2298350378782128937, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
+      propertyPath: _crossOff
+      value: 
+      objectReference: {fileID: 159292287, guid: d79e9cb5b00742d40999e9c8af88be7b, type: 3}
+    - target: {fileID: 2298350378782128937, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
       propertyPath: _crosshair
       value: 
       objectReference: {fileID: 1481996468}
@@ -15315,10 +15323,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4506555107395710690, guid: 6e6632626ed07ba4589fc06815cec917, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506555107395710690, guid: 6e6632626ed07ba4589fc06815cec917, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4506555107395710717, guid: 6e6632626ed07ba4589fc06815cec917, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ff705baee3023b54dbfbb3413eae0bc1, type: 3}
+      objectReference: {fileID: 159292287, guid: d79e9cb5b00742d40999e9c8af88be7b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6632626ed07ba4589fc06815cec917, type: 3}
 --- !u!114 &1481996468 stripped
