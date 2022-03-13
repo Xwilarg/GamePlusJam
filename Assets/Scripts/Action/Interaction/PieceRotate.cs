@@ -27,6 +27,8 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private bool _isPillar;
 
+        private AudioSource _source;
+
         private float _oneTurnAngle;
         private float _orRot, _destRot;
         private float _timer = 1f;
@@ -65,6 +67,7 @@ namespace GamesPlusJam.Puzzle
             if (_isPillar)
             {
                 AnswerText.Instance.CheckVictory();
+                _source.Play();
             }
         }
 
@@ -72,6 +75,7 @@ namespace GamesPlusJam.Puzzle
 
         private void Start()
         {
+            _source = GetComponent<AudioSource>();
             _oneTurnAngle = 360 / _nbTurns;
             _destRot = transform.rotation.eulerAngles.y;
             _orRot = transform.rotation.eulerAngles.y + _oneTurnAngle;
