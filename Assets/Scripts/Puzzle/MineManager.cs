@@ -12,7 +12,19 @@ namespace GamesPlusJam.Puzzle
 
         public static MineManager Instance { get; private set; }
 
-        public bool Lost { set; private get; }
+        private bool _lost;
+        public bool Lost
+        {
+            set
+            {
+                if (!_lost)
+                {
+                    _output.TouchMine();
+                }
+                _lost = value;
+            }
+            private get => _lost;
+        }
 
         private void Awake()
         {

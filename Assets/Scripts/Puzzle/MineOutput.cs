@@ -11,8 +11,10 @@ namespace GamesPlusJam.Puzzle
 
         public override bool IsAvailable => CanInteract && !_didWon;
 
+        private AudioSource _source;
+
         [SerializeField]
-        private Material _ok, _notOk;
+        private Material _ok, _notOk, _victory;
 
 
         private MeshRenderer _renderer;
@@ -24,7 +26,7 @@ namespace GamesPlusJam.Puzzle
                 _canInteract = value;
                 if (!_didWon)
                 {
-                    _renderer.material = value ? _ok : _notOk;
+                    _renderer.materials[3] = value ? _ok : _notOk;
                 }
             }
             get => _canInteract;
@@ -38,13 +40,19 @@ namespace GamesPlusJam.Puzzle
         {
             _didWon = true;
             AnswerText.Instance.FindLetters();
-            _renderer.material = _ok;
+            _renderer.materials[3] = _victory;
             Manager.Win();
+        }
+
+        public void TouchMine()
+        {
+            _source.Play();
         }
 
         private void Start()
         {
             _renderer = GetComponent<MeshRenderer>();
+            _source = GetComponentInChildren<AudioSource>();
         }
     }
 }
