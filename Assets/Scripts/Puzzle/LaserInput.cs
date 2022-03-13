@@ -82,6 +82,7 @@ namespace GamesPlusJam.Puzzle
                 {
                     r.enabled = false;
                 }
+                _renderer.enabled = false;
             }
         }
     }
