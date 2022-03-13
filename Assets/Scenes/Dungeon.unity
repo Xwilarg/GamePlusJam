@@ -358,6 +358,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 453508472}
     m_Modifications:
     - target: {fileID: 5893474798554837824, guid: bbc4344c7c7749d4e88f0e724bd1746d, type: 3}
+      propertyPath: _finalLight
+      value: 
+      objectReference: {fileID: 2142473253}
+    - target: {fileID: 5893474798554837824, guid: bbc4344c7c7749d4e88f0e724bd1746d, type: 3}
       propertyPath: _doorTransform
       value: 
       objectReference: {fileID: 453508472}
@@ -16303,7 +16307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2142473254
 Transform:
   m_ObjectHideFlags: 0
@@ -16326,7 +16330,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142473253}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
