@@ -67,6 +67,7 @@ namespace GamesPlusJam.Puzzle
             if (_isPillar)
             {
                 AnswerText.Instance.CheckVictory();
+                _source.pitch = Random.Range(.75f, 1.25f);
                 _source.Play();
             }
         }
