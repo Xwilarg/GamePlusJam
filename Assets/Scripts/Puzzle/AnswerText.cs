@@ -20,9 +20,9 @@ namespace GamesPlusJam.Puzzle
         private string[] _possibilities = new[]
         {
             "beetle",
+            "beaver",
             "beluga",
-            "badger",
-            "beaver"
+            "badger"
         };
 
         public string GetAnimal(int index) => _possibilities[index];
