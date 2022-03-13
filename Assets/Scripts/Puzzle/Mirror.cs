@@ -8,11 +8,14 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private GameObject _child;
 
+        private AudioSource _source;
+
         private void Start()
         {
+            _source = GetComponent<AudioSource>();
             if (Random.Range(0, 2) == 0)
             {
-                Toggle();
+                Toggle(true);
             }
         }
 
@@ -30,7 +33,7 @@ namespace GamesPlusJam.Puzzle
             Toggle();
         }
 
-        public void Toggle()
+        public void Toggle(bool bypassAudio = false)
         {
             _status = !_status;
             _child.SetActive(!_status);
@@ -41,6 +44,11 @@ namespace GamesPlusJam.Puzzle
             else
             {
                 gameObject.layer = 0;
+            }
+            if (!bypassAudio)
+            {
+                _source.pitch = Random.Range(.75f, 1.25f);
+                _source.Play();
             }
         }
 
