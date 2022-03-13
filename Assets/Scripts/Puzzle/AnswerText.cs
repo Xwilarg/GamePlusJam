@@ -114,9 +114,12 @@ namespace GamesPlusJam.Puzzle
 
         private void FindOneLetter()
         {
-            var randIndex = Random.Range(0, _lettersUsed.Count);
-            _lettersFound.Add(_lettersUsed[randIndex]);
-            _lettersUsed.RemoveAt(randIndex);
+            if (_lettersUsed.Any())
+            {
+                var randIndex = Random.Range(0, _lettersUsed.Count);
+                _lettersFound.Add(_lettersUsed[randIndex]);
+                _lettersUsed.RemoveAt(randIndex);
+            }
         }
 
         public void FindLetters()
