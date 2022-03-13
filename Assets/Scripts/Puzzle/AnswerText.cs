@@ -17,6 +17,9 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private Transform _doorTransform;
 
+        [SerializeField]
+        private GameObject _finalLight;
+
         private string[] _possibilities = new[]
         {
             "beetle",
@@ -62,6 +65,7 @@ namespace GamesPlusJam.Puzzle
                 }
             }
             _isWon = true;
+            _finalLight.SetActive(true);
         }
 
         private void Update()
