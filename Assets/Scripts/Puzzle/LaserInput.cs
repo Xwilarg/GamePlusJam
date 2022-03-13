@@ -80,7 +80,7 @@ namespace GamesPlusJam.Puzzle
             {
                 DrawLaser(hitInfo.collider.GetComponent<LineRenderer>(), hitInfo.point, () =>
                 {
-                    return hitInfo.collider.transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2;
+                    return hitInfo.collider.transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2 - Mathf.PI / 4;
                 });
             }
             else if (hitInfo.collider.CompareTag("MirrorOutput") && !_isAlreadyWon)
