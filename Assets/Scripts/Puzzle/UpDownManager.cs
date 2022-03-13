@@ -74,6 +74,7 @@ namespace GamesPlusJam.Puzzle
                     ud.Available = false;
                 }
                 AnswerText.Instance.FindLetters();
+                GetComponent<AudioSource>().Play();
             }
         }
     }
