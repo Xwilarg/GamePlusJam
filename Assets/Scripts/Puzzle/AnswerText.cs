@@ -108,7 +108,7 @@ namespace GamesPlusJam.Puzzle
             _text = GetComponent<TMP_Text>();
             _lettersUsed = string.Join("", _baseText).ToLowerInvariant().Where(x => char.IsLetter(x)).Distinct().ToList();
             _diffLetterCount = _lettersUsed.Count;
-            FindLetters();
+            FindOneLetter();
             DisplayText();
         }
 
@@ -124,7 +124,7 @@ namespace GamesPlusJam.Puzzle
 
         public void FindLetters()
         {
-            for (int i = 0; i < _diffLetterCount / 5; i++)
+            for (int i = 0; i < _diffLetterCount / 4; i++)
             {
                 FindOneLetter();
             }
