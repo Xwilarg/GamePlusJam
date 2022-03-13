@@ -18,9 +18,11 @@ namespace GamesPlusJam.Puzzle
         {
             "beetle",
             "beluga",
-            "falcon",
+            "badger",
             "beaver"
         };
+
+        public string GetAnimal(int index) => _possibilities[index];
 
         private List<string> _baseText = new()
         {

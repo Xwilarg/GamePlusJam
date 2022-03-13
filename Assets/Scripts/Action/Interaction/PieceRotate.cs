@@ -1,4 +1,5 @@
 ﻿using GamesPlusJam.Action.Interaction;
+using TMPro;
 using UnityEngine;
 
 namespace GamesPlusJam.Puzzle
@@ -16,6 +17,9 @@ namespace GamesPlusJam.Puzzle
 
         [SerializeField]
         private int _nbTurns;
+
+        [SerializeField]
+        private TMP_Text _debugText;
 
         [SerializeField]
         private float _speed;
@@ -43,17 +47,28 @@ namespace GamesPlusJam.Puzzle
             }
             else
             {
+                _choiceIndex++;
                 _orRot = _destRot;
                 _destRot += _oneTurnAngle;
+                if (_debugText != null)
+                {
+                    _debugText.text = AnswerText.Instance.GetAnimal(_choiceIndex % 4);
+                }
             }
             _timer = 0f;
         }
+
+        private int _choiceIndex;
 
         private void Start()
         {
             _oneTurnAngle = 360 / _nbTurns;
             _destRot = transform.rotation.eulerAngles.y;
             _orRot = transform.rotation.eulerAngles.y + _oneTurnAngle;
+            if (_debugText != null)
+            {
+                _debugText.text = AnswerText.Instance.GetAnimal(0);
+            }
         }
 
         private void Update()
