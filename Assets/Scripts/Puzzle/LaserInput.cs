@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace GamesPlusJam.Puzzle
 {
     public class LaserInput : MonoBehaviour
     {
+        public static LaserInput Instance { private set; get; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         [SerializeField]
         private GameObject[] _reflectors;
         private List<LineRenderer> _renderers = new();
@@ -21,6 +27,7 @@ namespace GamesPlusJam.Puzzle
         private List<GameObject> _mirrors = new();
 
         private bool _isAlreadyWon;
+        public bool DidWon => _isAlreadyWon;
 
         private void Start()
         {
@@ -44,24 +51,21 @@ namespace GamesPlusJam.Puzzle
                 renderer.enabled = false;
             }
             _mirrors.Clear();
-            if (!_isAlreadyWon)
+            //if (!_isAlreadyWon)
             {
                 _output.Toggle(false);
-                DrawLaser(_renderer, _laserStart.position, () =>
-                {
-                    return transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
-                });
+                DrawLaser(_renderer, _laserStart.position, transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
             }
         }
 
-        public void DrawLaser(LineRenderer renderer, Vector3 startPos, Func<float> angle)
+        public void DrawLaser(LineRenderer renderer, Vector3 startPos, float angle)
         {
             Physics.Raycast(new Ray(startPos,
                 new Vector3(
-                    x: Mathf.Sin(angle()),
+                    x: Mathf.Sin(angle),
                     y: 0f,
-                    z: Mathf.Cos(angle())
-                )), out RaycastHit hitInfo);
+                    z: Mathf.Cos(angle)
+                )), out RaycastHit hitInfo, float.MaxValue, ~(1 << 7));
 
             if (_mirrors.Contains(hitInfo.collider.gameObject))
             {
@@ -78,10 +82,7 @@ namespace GamesPlusJam.Puzzle
 
             if (hitInfo.collider.CompareTag("Mirror"))
             {
-                DrawLaser(hitInfo.collider.GetComponent<LineRenderer>(), hitInfo.point, () =>
-                {
-                    return hitInfo.collider.transform.rotation.eulerAngles.y * Mathf.Deg2Rad - Mathf.PI / 2 - Mathf.PI / 4;
-                });
+                DrawLaser(hitInfo.collider.GetComponent<LineRenderer>(), hitInfo.point, angle + (hitInfo.collider.GetComponent<Mirror>().Angle ? 1f : -1f) * Mathf.PI / 2);
             }
             else if (hitInfo.collider.CompareTag("MirrorOutput") && !_isAlreadyWon)
             {
