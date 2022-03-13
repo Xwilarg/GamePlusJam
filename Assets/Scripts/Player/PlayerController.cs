@@ -38,6 +38,11 @@ namespace GamesPlusJam
 
         private bool _canMove = true;
 
+        public void Victory()
+        {
+            _canMove = false;
+        }
+
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();

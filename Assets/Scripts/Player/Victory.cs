@@ -8,7 +8,7 @@ namespace GamesPlusJam.Player
         {
             if (other.CompareTag("Player"))
             {
-
+                other.GetComponent<PlayerController>().Victory();
             }
         }
     }
