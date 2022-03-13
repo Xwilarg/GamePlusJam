@@ -7,6 +7,9 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private Mine[] _mines;
 
+        [SerializeField]
+        private MineOutput _output;
+
         public static MineManager Instance { get; private set; }
 
         private void Awake()
@@ -20,6 +23,7 @@ namespace GamesPlusJam.Puzzle
             {
                 mine.Toggle(value);
             }
+            _output.CanInteract = !value;
         }
     }
 }

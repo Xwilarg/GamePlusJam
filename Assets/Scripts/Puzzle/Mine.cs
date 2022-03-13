@@ -20,7 +20,7 @@ namespace GamesPlusJam.Puzzle
         {
             if (other.CompareTag("Player"))
             {
-                Toggle(true);
+                MineManager.Instance.ToggleAll(true);
             }
         }
     }
