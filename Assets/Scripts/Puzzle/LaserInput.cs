@@ -26,11 +26,15 @@ namespace GamesPlusJam.Puzzle
 
         private List<GameObject> _mirrors = new();
 
+        [SerializeField]
+        private AudioSource _source;
+
         private bool _isAlreadyWon;
         public bool DidWon => _isAlreadyWon;
 
         private void Start()
         {
+            _source =   GetComponent<AudioSource>();
             _renderer = GetComponent<LineRenderer>();
             foreach (var r in _reflectors)
             {
@@ -94,6 +98,7 @@ namespace GamesPlusJam.Puzzle
                     r.enabled = false;
                 }
                 _renderer.enabled = false;
+                _source.Stop();
             }
         }
     }
