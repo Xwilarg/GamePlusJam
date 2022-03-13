@@ -37,11 +37,11 @@ namespace GamesPlusJam.Puzzle
             if (!_isAlreadyWon)
             {
                 _output.Toggle(false);
+                DrawLaser(_renderer, _laserStart.position, () =>
+                {
+                    return transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
+                });
             }
-            DrawLaser(_renderer, _laserStart.position, () =>
-            {
-                return transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
-            });
         }
 
         public void DrawLaser(LineRenderer renderer, Vector3 startPos, Func<float> angle)
@@ -78,6 +78,10 @@ namespace GamesPlusJam.Puzzle
                 _output.Toggle(true);
                 _isAlreadyWon = true;
                 AnswerText.Instance.FindLetters();
+                foreach (var r in _renderers)
+                {
+                    r.enabled = false;
+                }
             }
         }
     }

@@ -46,11 +46,11 @@ namespace GamesPlusJam.Puzzle
             _upDowns[index].Activate();
             if (index > 0)
             {
-                _upDowns[index - 1].Activate();
+                _upDowns[index - 1].Activate(true);
             }
             if (index < _upDowns.Length - 1)
             {
-                _upDowns[index + 1].Activate();
+                _upDowns[index + 1].Activate(true);
             }
             UpdateDisplay();
         }
