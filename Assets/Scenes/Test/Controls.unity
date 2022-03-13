@@ -6375,6 +6375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682542984}
+  - component: {fileID: 682542985}
   m_Layer: 0
   m_Name: MineRoom
   m_TagString: Untagged
@@ -6403,6 +6404,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682542985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682542983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade2cfd3d6d6c1346840ed50a967aa73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mines:
+  - {fileID: 1820459324}
+  - {fileID: 1232672912}
+  - {fileID: 1495043871}
+  - {fileID: 2073968082}
 --- !u!1 &697043005
 GameObject:
   m_ObjectHideFlags: 0
@@ -7836,11 +7854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12810ec120de3f04c9a7a4de5c455b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lights:
-  - {fileID: 1820459322}
-  - {fileID: 1232672909}
-  - {fileID: 1495043868}
-  - {fileID: 2073968079}
   SwitchOn: 1
 --- !u!65 &1085002217
 BoxCollider:
@@ -7976,6 +7989,7 @@ GameObject:
   - component: {fileID: 1232672911}
   - component: {fileID: 1232672910}
   - component: {fileID: 1232672909}
+  - component: {fileID: 1232672912}
   m_Layer: 0
   m_Name: Mine (1)
   m_TagString: Untagged
@@ -8053,7 +8067,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232672908}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -8073,6 +8087,18 @@ Transform:
   m_Father: {fileID: 682542984}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1232672912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232672908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a07bb617d8c694bae67165fe1d5d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1247860260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11241,6 +11267,7 @@ GameObject:
   - component: {fileID: 1495043870}
   - component: {fileID: 1495043869}
   - component: {fileID: 1495043868}
+  - component: {fileID: 1495043871}
   m_Layer: 0
   m_Name: Mine (2)
   m_TagString: Untagged
@@ -11318,7 +11345,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495043867}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -11338,6 +11365,18 @@ Transform:
   m_Father: {fileID: 682542984}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1495043871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495043867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a07bb617d8c694bae67165fe1d5d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1542179367
 GameObject:
   m_ObjectHideFlags: 0
@@ -12796,6 +12835,7 @@ GameObject:
   - component: {fileID: 1820459321}
   - component: {fileID: 1820459323}
   - component: {fileID: 1820459322}
+  - component: {fileID: 1820459324}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -12888,11 +12928,23 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820459320}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1820459324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820459320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a07bb617d8c694bae67165fe1d5d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1825422740
 GameObject:
   m_ObjectHideFlags: 0
@@ -13185,11 +13237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12810ec120de3f04c9a7a4de5c455b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lights:
-  - {fileID: 1820459322}
-  - {fileID: 1232672909}
-  - {fileID: 1495043868}
-  - {fileID: 2073968079}
   SwitchOn: 0
 --- !u!65 &2000447922
 BoxCollider:
@@ -13358,6 +13405,7 @@ GameObject:
   - component: {fileID: 2073968081}
   - component: {fileID: 2073968080}
   - component: {fileID: 2073968079}
+  - component: {fileID: 2073968082}
   m_Layer: 0
   m_Name: Mine (3)
   m_TagString: Untagged
@@ -13435,7 +13483,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073968078}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -13455,6 +13503,18 @@ Transform:
   m_Father: {fileID: 682542984}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2073968082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073968078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a07bb617d8c694bae67165fe1d5d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2125167411
 GameObject:
   m_ObjectHideFlags: 0
@@ -13507,6 +13567,10 @@ PrefabInstance:
       objectReference: {fileID: 2053264673}
     - target: {fileID: 2298350378782128944, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298350378782128944, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2298350378782128948, guid: 293d5806091af8447b34b7d4d53abf39, type: 3}
