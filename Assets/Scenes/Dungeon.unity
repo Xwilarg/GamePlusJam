@@ -15348,7 +15348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Move: ZQSD
+  m_text: 'Move: WASD
 
     Action: Left Mouse Click
 
