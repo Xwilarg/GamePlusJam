@@ -51,7 +51,7 @@ namespace GamesPlusJam.Puzzle
                 renderer.enabled = false;
             }
             _mirrors.Clear();
-            //if (!_isAlreadyWon)
+            if (!_isAlreadyWon)
             {
                 _output.Toggle(false);
                 DrawLaser(_renderer, _laserStart.position, transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
