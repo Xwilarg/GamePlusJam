@@ -14,6 +14,9 @@ namespace GamesPlusJam.Puzzle
             Instance = this;
         }
 
+        [SerializeField]
+        private Transform _doorTransform;
+
         private string[] _possibilities = new[]
         {
             "beetle",
@@ -46,8 +49,43 @@ namespace GamesPlusJam.Puzzle
             "first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"
         };
 
+        [SerializeField]
+        private PieceRotate[] _pillars;
+
+        public void CheckVictory()
+        {
+            for (int i = 0; i < _pillars.Length; i++)
+            {
+                if (GetAnimal(_pillars[i].Index) != _finalAnswer[i])
+                {
+                    return;
+                }
+            }
+            _isWon = true;
+        }
+
+        private void Update()
+        {
+            if (_isWon && _timer < 1f)
+            {
+                _timer += Time.deltaTime;
+                _timer = Mathf.Clamp01(_timer);
+                _doorTransform.position = new Vector3(
+                    x: _doorTransform.position.x,
+                    y: Mathf.Lerp(_orY, _destY, _timer),
+                    z: _doorTransform.position.z
+                );
+            }
+        }
+
+        private float _timer;
+        private float _orY;
+        private float _destY = -2.05f;
+        private bool _isWon = false;
+
         private void Start()
         {
+            _orY = transform.position.y;
             _finalAnswer = new string[_pillarCount];
             List<int> pillars = Enumerable.Range(0, _pillarCount).ToList();
             for (int i = 0; i < 4; i++)
@@ -56,9 +94,11 @@ namespace GamesPlusJam.Puzzle
                 var pillarValue = pillars[randPillar];
                 pillars.RemoveAt(randPillar);
 
-                var animal = _possibilities[Random.Range(0, _possibilities.Length)];
-                _finalAnswer[pillarValue] = animal;
-                _baseText.Add($"The {_intToText[pillarValue]} pillar must be the {animal}");
+                _finalAnswer[pillarValue] = _possibilities[Random.Range(0, _possibilities.Length)];
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                _baseText.Add($"The {_intToText[i]} pillar must be the {_finalAnswer[i]}");
             }
 
             _text = GetComponent<TMP_Text>();

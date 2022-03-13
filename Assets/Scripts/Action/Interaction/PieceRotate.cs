@@ -24,9 +24,14 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private float _speed;
 
+        [SerializeField]
+        private bool _isPillar;
+
         private float _oneTurnAngle;
         private float _orRot, _destRot;
         private float _timer = 1f;
+
+        public int Index => _choiceIndex % 4;
 
         public override bool IsOneWay => true;
 
@@ -56,6 +61,11 @@ namespace GamesPlusJam.Puzzle
                 }
             }
             _timer = 0f;
+
+            if (_isPillar)
+            {
+                AnswerText.Instance.CheckVictory();
+            }
         }
 
         private int _choiceIndex;
