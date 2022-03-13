@@ -34,7 +34,12 @@ namespace GamesPlusJam.Puzzle
 
         private void AddBip()
         {
-            _bips.Add(Random.Range(0, _cubes.Count));
+            int newBip;
+            do
+            {
+                newBip = Random.Range(0, _cubes.Count);
+            } while (_bips.Count > 1 && _bips[^1] == newBip && _bips[^2] == newBip);
+            _bips.Add(newBip);
         }
 
         public void AddAnswer(int index)
