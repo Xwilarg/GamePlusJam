@@ -7,7 +7,8 @@ namespace GamesPlusJam.Puzzle
     public class LaserInput : MonoBehaviour
     {
         [SerializeField]
-        private LineRenderer[] _renderers;
+        private GameObject[] _reflectors;
+        private List<LineRenderer> _renderers = new();
 
         [SerializeField]
         private Toggeable _output;
@@ -24,6 +25,15 @@ namespace GamesPlusJam.Puzzle
         private void Start()
         {
             _renderer = GetComponent<LineRenderer>();
+            foreach (var r in _reflectors)
+            {
+                var lr = r.AddComponent<LineRenderer>();
+                lr.startWidth = .1f;
+                lr.endWidth = .1f;
+                lr.material = _renderer.material;
+                _renderers.Add(lr);
+            }
+
             _renderer.SetPosition(0, _laserStart.position);
         }
 
