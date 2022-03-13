@@ -26,7 +26,7 @@ namespace GamesPlusJam.Puzzle
 
         public void TogglePipeStatus(bool value)
         {
-            _previousPipe.Toggle(value);
+            //_previousPipe.Toggle(value);
         }
 
         private float _prog = 0f;
