@@ -5,6 +5,8 @@ namespace GamesPlusJam.Puzzle
 {
     public class MineOutput : AInteraction
     {
+        public MineManager Manager { private get; set; }
+
         public override bool IsOneWay => true;
 
         public override bool IsAvailable => CanInteract && !_didWon;
@@ -37,6 +39,7 @@ namespace GamesPlusJam.Puzzle
             _didWon = true;
             AnswerText.Instance.FindLetters();
             _renderer.material = _ok;
+            Manager.Win();
         }
 
         private void Start()

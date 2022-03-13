@@ -17,6 +17,19 @@ namespace GamesPlusJam.Puzzle
             Instance = this;
         }
 
+        private void Start()
+        {
+            _output.Manager = this;
+        }
+
+        public void Win()
+        {
+            foreach (var mini in _mines)
+            {
+                mini.Win();
+            }
+        }
+
         public void ToggleAll(bool value)
         {
             foreach (var mine in _mines)

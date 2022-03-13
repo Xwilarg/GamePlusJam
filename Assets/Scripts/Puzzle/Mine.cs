@@ -9,6 +9,8 @@ namespace GamesPlusJam.Puzzle
         [SerializeField]
         private float _min, _max;
 
+        private bool _didWin = false;
+
         private void Start()
         {
             _light = GetComponent<Light>();
@@ -21,7 +23,18 @@ namespace GamesPlusJam.Puzzle
 
         public void Toggle(bool value)
         {
-            _light.enabled = value;
+            if (!_didWin)
+            {
+                _light.enabled = value;
+            }
+        }
+
+        public void Win()
+        {
+            Toggle(true);
+            _didWin = true;
+            _light.color = Color.green;
+
         }
 
         public void OnTriggerEnter(Collider other)
